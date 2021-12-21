@@ -27,15 +27,7 @@ def invert_string(string_: str) -> str:
     name="invert-a-string-workflow",
     import_defs=[
         orq.GitImportDefinition.get_current_repo_and_branch()
-    ],
-    data_aggregation=orq.DataAggregationDefinition(
-        run=True,
-        resource_def=orq.ResourceDefinition(
-            cpu="500m",
-            memory="500Mi",
-            disk="100Mi",
-        ),
-    )
+    ]
 )
 def invert_string_workflow(strings_to_invert: typing.List[str]) -> typing.List[orq.TaskDefinition]:
     """
