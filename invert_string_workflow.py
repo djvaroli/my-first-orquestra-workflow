@@ -42,9 +42,7 @@ def invert_string_workflow(strings_to_invert: typing.List[str]) -> typing.List[o
     :param strings_to_invert:
     :return:
     """
-    return [
-        invert_string(str_) for str_ in strings_to_invert
-    ]
+    return [invert_string(str_) for str_ in strings_to_invert]
 
 
 workflow: orq.WorkflowDefinition = invert_string_workflow(["the-santa-clause", "palindrome", "abba"])
