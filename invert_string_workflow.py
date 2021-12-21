@@ -47,7 +47,7 @@ def invert_string_workflow(strings_to_invert: typing.List[str]) -> typing.List[o
     ]
 
 
-workflow: orq.WorkflowDefinition = invert_string_workflow(["santa-clause", "palindrome", "abba"])
+workflow: orq.WorkflowDefinition = invert_string_workflow(["the-santa-clause", "palindrome", "abba"])
 
 workflow.validate()
 pprint(workflow.to_json())
