@@ -1,8 +1,9 @@
 import logging
-from pprint import pprint
+import json
 import typing
 
 import orquestra.sdk as orq
+from orquestra.runtime import RemoteRuntime
 
 
 @orq.task(
@@ -47,7 +48,24 @@ def invert_string_workflow(strings_to_invert: typing.List[str]) -> typing.List[o
 
 workflow: orq.WorkflowDefinition = invert_string_workflow(["the-santa-clause", "palindrome", "abba"])
 
+# validate the workflow
 workflow.validate()
-pprint(workflow.to_json())
+
+# save the config to a json file
+workflow_config = workflow.to_json()
+workflow_name = workflow_config["name"]
+with open(f"{workflow_name}_config.json", "w+") as f:
+    json.dump(workflow_config, f)
+
+
+# submit to Orquestra
+runtime = RemoteRuntime()
+workflow_id = runtime.create_workflow(workflow)
+print("CREATE WORKFLOW RESP", workflow_id)
+print("STATUS WORKFLOW RESP", runtime.get_workflow_status(workflow_id))
+print("GET WORKFLOW DETAILS", runtime.get_workflow(workflow_id))
+print("GET WORKFLOW RESULT", runtime.get_workflow_result(workflow_id))
+print("LIST WORKFLOW ARTIFACTS", runtime.list_artifacts(workflow_id))
+print("LIST WORKFLOWS", runtime.list_workflows())
 
 
