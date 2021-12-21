@@ -62,4 +62,5 @@ with open(f"{workflow_name}_config.json", "w+") as f:
 runtime = RemoteRuntime()
 workflow_id = runtime.create_workflow(workflow)
 
+print("STATUS WORKFLOW RESP", runtime.get_workflow_status(workflow_id))
 
