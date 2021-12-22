@@ -62,6 +62,8 @@ workflow: orq.WorkflowDefinition = hello_workflow("Thomas")
 # validation
 workflow.validate()
 
+pprint(workflow.to_json())
+
 runtime = RemoteRuntime()
 
 workflow_id = runtime.create_workflow(workflow)
