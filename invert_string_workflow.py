@@ -54,5 +54,11 @@ with open(f"{workflow_name}_config.json", "w+") as f:
 runtime = RemoteRuntime()
 workflow_id = runtime.create_workflow(workflow)
 
+print("CREATE WORKFLOW RESP", workflow_id)
 print("STATUS WORKFLOW RESP", runtime.get_workflow_status(workflow_id))
-
+print("GET WORKFLOW DETAILS", runtime.get_workflow(workflow_id))
+print("GET WORKFLOW RESULT", runtime.get_workflow_result(workflow_id))
+print("LIST WORKFLOW ARTIFACTS", runtime.list_artifacts(workflow_id))
+print("STOP WORKFLOW RESP", runtime.stop_workflow(workflow_id))
+print("RETRY WORKFLOW RESP", runtime.retry_workflow(workflow_id))
+print("LIST WORKFLOWS", runtime.list_workflows())
