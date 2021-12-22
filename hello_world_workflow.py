@@ -6,7 +6,6 @@ from pprint import pprint
 import typing
 
 import orquestra.sdk as orq
-from orquestra.runtime import RemoteRuntime
 
 
 @orq.task(
@@ -56,16 +55,19 @@ def hello_workflow(
     ]
 
 
-# top level "workflow" object used by ORQ CLI to submit workflow
-workflow: orq.WorkflowDefinition = hello_workflow("Thomas")
+if __name__ == '__main__':
+    from orquestra.runtime import RemoteRuntime
 
-# validation
-workflow.validate()
+    # top level "workflow" object used by ORQ CLI to submit workflow
+    workflow: orq.WorkflowDefinition = hello_workflow("Daniel")
 
-pprint(workflow.to_json())
+    # validation
+    workflow.validate()
 
-runtime = RemoteRuntime()
+    pprint(workflow.to_json())
 
-workflow_id = runtime.create_workflow(workflow)
-print(workflow_id)
+    runtime = RemoteRuntime()
+
+    workflow_id = runtime.create_workflow(workflow)
+    print(workflow_id)
 
